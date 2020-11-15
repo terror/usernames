@@ -1,6 +1,6 @@
 ## usernames
 
-A list of potential inactive accounts on github that possess
+A [list](https://github.com/terror/usernames/blob/master/all.txt) of ~~potential~~ inactive accounts on github that possess
 a `rare` username.
 
 As per GitHub's official Name Squatting Policy:
@@ -50,7 +50,7 @@ results/
 ```
 
 ### Note
-*Not all activity on GitHub is publicly available, therefore users scraped here may still be active.*  
+*Not all activity on GitHub is publicly available, therefore users scraped here may still technically be active (even though they appear to be inactive).*
 
 *If you are active and want to be removed from these lists, feel free to submit a PR!*
 
