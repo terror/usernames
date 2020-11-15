@@ -1,6 +1,6 @@
 ## usernames
 
-a list of the most likely potential inactive usernames on github that possess
+A list of potential inactive accounts on github that possess
 a `rare` username.
 
 As per GitHub's official Name Squatting Policy:
@@ -10,17 +10,23 @@ As per GitHub's official Name Squatting Policy:
 So feel free to try and claim what you like!
 
 ### Checks
-- No starred repositories
-- No repositories
-- No private contributions
-- No following
-- No public contributions
-- Created in year <= 2011
+- [x] No starred repositories
+- [x] No repositories
+- [x] No private contributions
+- [x] No following
+- [x] No public contributions
+- [x] Created in year <= 2011
 
 ### Results
-[Wordlist](https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-no-swears.txt)  
-[Output](https://github.com/terror/usernames/blob/master/output.txt)
+```
+results/
+├── output.txt <- https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-no-swears.txt
+├── output2.txt <- https://github.com/openethereum/wordlist/blob/master/res/wordlist.txt
+└── output3.txt <- https://en.wikipedia.org/wiki/Wikipedia:List_of_two-letter_combinations
+```
 
 ### Note
-*Not all activity on GitHub is publicly available, therefore users scraped here may still be active.*
+*Not all activity on GitHub is publicly available, therefore users scraped here may still be active.*  
+
+*If you are active and want to be removed from these lists, feel free to submit a PR!*
 

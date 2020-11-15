@@ -9,7 +9,7 @@ headers = {"Authorization": os.getenv("TOKEN")}
 
 def main():
     users = open("users.txt", "r")
-    output = open("output2.txt", "w")
+    output = open("results/output3.txt", "w")
 
     for user in users:
         res = build_query(user.rstrip())["data"]
