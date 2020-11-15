@@ -9,6 +9,26 @@ As per GitHub's official Name Squatting Policy:
 
 So feel free to try and claim what you like!
 
+### Usage
+
+You can run the script with your own custom wordlist (and also tweak the filters)
+
+#### Arguments:  
+`--inp, -i`: input file  
+`--out, -o`: output file
+
+#### Access Token:
+Generate a token [here](https://github.com/settings/tokens)
+```
+# .env file 
+
+TOKEN="token [your token]"
+```
+#### Example:
+```bash
+$ python3 main.py -i users.txt -o output.txt
+```
+
 ### Checks
 - [x] No starred repositories
 - [x] No repositories

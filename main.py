@@ -2,14 +2,26 @@
 import requests
 import os
 from dotenv import load_dotenv
+import argparse
 load_dotenv()
 
 headers = {"Authorization": os.getenv("TOKEN")}
 
 
 def main():
-    users = open("users.txt", "r")
-    output = open("results/output7.txt", "w")
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-i', '--inp', help='input file')
+    parser.add_argument('-o', '--out', help='output file')
+
+    args = parser.parse_args()
+
+    if not args.inp or not args.out:
+        print("Must provide valid I/O files.")
+        exit()
+
+    users = open(args.inp, "r")
+    output = open(args.out, "w")
 
     for user in users:
         res = build_query(user.rstrip())["data"]
