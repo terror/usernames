@@ -22,7 +22,11 @@ So feel free to try and claim what you like!
 results/
 ├── output.txt <- https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-no-swears.txt
 ├── output2.txt <- https://github.com/openethereum/wordlist/blob/master/res/wordlist.txt
-└── output3.txt <- https://en.wikipedia.org/wiki/Wikipedia:List_of_two-letter_combinations
+├── output3.txt <- https://en.wikipedia.org/wiki/Wikipedia:List_of_two-letter_combinations
+├── output4.txt <- http://www.scrabble.org.au/words/threes.htm
+├── output5.txt <- https://www.ef.com/ca/english-resources/english-vocabulary/top-1000-words/
+├── output6.txt <- https://www.reddit.com/r/leagueoflegends/comments/i2wmdg/list_of_words_so_you_can_play_skribbl_with_lol/
+└── output7.txt <- https://www.enchantedlearning.com/wordlist/computer.shtml
 ```
 
 ### Note
