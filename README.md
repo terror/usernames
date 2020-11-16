@@ -20,9 +20,9 @@ You can run the script with your own custom wordlist (and also tweak the filters
 #### Access Token:
 Generate a token [here](https://github.com/settings/tokens)
 ```
-# .env file 
+# .env file, replace token_here with your token
 
-TOKEN="token [your token]"
+TOKEN="token token_here" 
 ```
 #### Example:
 ```bash

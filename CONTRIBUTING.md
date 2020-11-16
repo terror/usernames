@@ -23,7 +23,7 @@ $ python3 main.py -i input.txt -o output.txt
 
 #### Contributing:
 
-All inactive users in located in the [all.md](https://github.com/terror/usernames/blob/master/all.md) file. You can filter users and submit a pull request to add them to the markdown table as long as they are currently not present in the table.
+All inactive users are located in the [all.md](https://github.com/terror/usernames/blob/master/all.md) file. You can filter users and submit a pull request to add them to the markdown table as long as they are currently not present in the table.
 
 Account creation date should be no less than 2012 ~ 8 years.
 
