@@ -44,6 +44,8 @@ results/
 ├── output10.txt <- https://github.com/hzlzh/Domain-Name-List/blob/master/3-letter-words.txt
 ├── output11.txt <- https://github.com/hzlzh/Domain-Name-List/blob/master/Animal-words.txt
 ├── output12.txt <- https://www.random.org/strings/?num=10000&len=3&digits=on&upperalpha=on&loweralpha=on&unique=on&format=html&rnd=new
+├── output13.txt <- 100 ... 999 
+├── output14.txt <- 0 ... 99
 ├── output2.txt <- https://github.com/openethereum/wordlist/blob/master/res/wordlist.txt
 ├── output3.txt <- https://en.wikipedia.org/wiki/Wikipedia:List_of_two-letter_combinations
 ├── output4.txt <- http://www.scrabble.org.au/words/threes.htm
