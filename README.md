@@ -41,12 +41,17 @@ $ python3 main.py -i users.txt -o output.txt
 ```
 results/
 ├── output.txt <- https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-no-swears.txt
+├── output10.txt <- https://github.com/hzlzh/Domain-Name-List/blob/master/3-letter-words.txt
+├── output11.txt <- https://github.com/hzlzh/Domain-Name-List/blob/master/Animal-words.txt
+├── output12.txt <- https://www.random.org/strings/?num=10000&len=3&digits=on&upperalpha=on&loweralpha=on&unique=on&format=html&rnd=new
 ├── output2.txt <- https://github.com/openethereum/wordlist/blob/master/res/wordlist.txt
 ├── output3.txt <- https://en.wikipedia.org/wiki/Wikipedia:List_of_two-letter_combinations
 ├── output4.txt <- http://www.scrabble.org.au/words/threes.htm
 ├── output5.txt <- https://www.ef.com/ca/english-resources/english-vocabulary/top-1000-words/
 ├── output6.txt <- https://www.reddit.com/r/leagueoflegends/comments/i2wmdg/list_of_words_so_you_can_play_skribbl_with_lol/
-└── output7.txt <- https://www.enchantedlearning.com/wordlist/computer.shtml
+├── output7.txt <- https://www.enchantedlearning.com/wordlist/computer.shtml
+├── output8.txt <- https://github.com/cervoise/pentest-scripts/blob/master/password-cracking/wordlists/pokemon-list-en.txt
+└── output9.txt <- https://github.com/dariusk/corpora/blob/master/data/words/nouns.json
 ```
 
 ### Note
