@@ -1,6 +1,6 @@
 ## usernames
 
-A [list](https://github.com/terror/usernames/blob/master/all.txt) of ~~potential~~ inactive accounts on github that possess
+A [list](https://github.com/terror/usernames/blob/master/all.md) of ~~potential~~ inactive accounts on github that possess
 a `rare` username.
 
 As per GitHub's official Name Squatting Policy:
