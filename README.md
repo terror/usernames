@@ -56,6 +56,9 @@ results/
 └── output9.txt <- https://github.com/dariusk/corpora/blob/master/data/words/nouns.json
 ```
 
+### Contributing
+See [CONTRIBUTING.md](https://github.com/terror/usernames/blob/master/CONTRIBUTING.md)
+
 ### Note
 *Not all activity on GitHub is publicly available, therefore users scraped here may still technically be active (even though they appear to be inactive).*
 
