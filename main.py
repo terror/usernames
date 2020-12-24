@@ -49,14 +49,14 @@ def main():
         print("Must provide valid I/O files.", file=sys.stderr)
         sys.exit(1)
 
-    users = open(args.inp, "r")
-    output = open(args.out, "w")
+    with open(args.inp, "r") as users:
+        with open(args.out, "w") as output:
 
-    for user in users:
-        res = build_query(user.rstrip())["data"]
-        if is_inactive_user(res["user"]):
-            print("OK!\nUser: {}".format(user))
-            output.write("{}\n".format(user))
+            for user in users:
+                res = build_query(user.rstrip())["data"]
+                if is_inactive_user(res["user"]):
+                    print("OK!\nUser: {}".format(user))
+                    output.write("{}\n".format(user))
 
 
 def run_query(query, variables):
