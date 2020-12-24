@@ -9,6 +9,34 @@ load_dotenv()
 headers = {"Authorization": os.getenv("TOKEN")}
 
 
+def is_inactive_user(user):
+    # not a github user
+    if user is None:
+        return False
+
+    # take older accounts
+    if int(user["createdAt"][0:4]) > 2011:
+        return False
+
+    curr_user = []
+
+    curr_user.append(user["starredRepositories"]["totalCount"])
+    curr_user.append(user["repositories"]["totalCount"])
+    curr_user.append(
+        user["contributionsCollection"]["totalCommitContributions"]
+    )
+    curr_user.append(
+        user["contributionsCollection"]["restrictedContributionsCount"]
+    )
+    curr_user.append(user["following"]["totalCount"])
+    curr_user.append(
+        0
+        if user["contributionsCollection"]["hasAnyContributions"] is False
+        else 1
+    )
+
+    return sum(curr_user) < 1
+
 def main():
     parser = argparse.ArgumentParser()
 
@@ -26,37 +54,9 @@ def main():
 
     for user in users:
         res = build_query(user.rstrip())["data"]
-
-        # not a github user
-        if res["user"] is None:
-            continue
-
-        # take older accounts
-        if int(res["user"]["createdAt"][0:4]) > 2011:
-            continue
-
-        curr_user = []
-
-        curr_user.append(res["user"]["starredRepositories"]["totalCount"])
-        curr_user.append(res["user"]["repositories"]["totalCount"])
-        curr_user.append(
-            res["user"]["contributionsCollection"]["totalCommitContributions"]
-        )
-        curr_user.append(
-            res["user"]["contributionsCollection"]["restrictedContributionsCount"]
-        )
-        curr_user.append(res["user"]["following"]["totalCount"])
-        curr_user.append(
-            0
-            if res["user"]["contributionsCollection"]["hasAnyContributions"] is False
-            else 1
-        )
-
-        if sum(curr_user) >= 1:
-            continue
-
-        print("OK!\nUser: {}".format(user))
-        output.write("{}\n".format(user))
+        if is_inactive_user(res["user"]):
+            print("OK!\nUser: {}".format(user))
+            output.write("{}\n".format(user))
 
 
 def run_query(query, variables):
