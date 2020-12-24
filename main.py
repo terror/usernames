@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import requests
 import os
+import sys
 from dotenv import load_dotenv
 import argparse
 load_dotenv()
@@ -17,8 +18,8 @@ def main():
     args = parser.parse_args()
 
     if not args.inp or not args.out:
-        print("Must provide valid I/O files.")
-        exit()
+        print("Must provide valid I/O files.", file=sys.stderr)
+        sys.exit(1)
 
     users = open(args.inp, "r")
     output = open(args.out, "w")
