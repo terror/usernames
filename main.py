@@ -1,106 +1,142 @@
-#!/usr/bin/env python3
-import requests
+"""collects inactive github usernames"""
+
+import argparse
 import os
 import sys
+from dataclasses import dataclass
+import requests
 from dotenv import load_dotenv
-import argparse
+
 load_dotenv()
 
-headers = {"Authorization": os.getenv("TOKEN")}
 
+@dataclass
+class Candidate:
+    """a candidate user"""
 
-def is_inactive_user(user):
-    # not a github user
-    if user is None:
-        return False
+    created_at: str
+    stars: int
+    repos: int
+    commits: int
+    private_contributions: int
+    public_contributions: int
+    following: int
 
-    # take older accounts
-    if int(user["createdAt"][0:4]) > 2011:
-        return False
+    def is_old_account(self) -> bool:
+        """checks if the candidates account was created before 2011"""
+        return int(self.created_at) < 2011
 
-    curr_user = []
-
-    curr_user.append(user["starredRepositories"]["totalCount"])
-    curr_user.append(user["repositories"]["totalCount"])
-    curr_user.append(
-        user["contributionsCollection"]["totalCommitContributions"]
-    )
-    curr_user.append(
-        user["contributionsCollection"]["restrictedContributionsCount"]
-    )
-    curr_user.append(user["following"]["totalCount"])
-    curr_user.append(
-        0
-        if user["contributionsCollection"]["hasAnyContributions"] is False
-        else 1
-    )
-
-    return sum(curr_user) < 1
-
-def main():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-i', '--inp', help='input file')
-    parser.add_argument('-o', '--out', help='output file')
-
-    args = parser.parse_args()
-
-    if not args.inp or not args.out:
-        print("Must provide valid I/O files.", file=sys.stderr)
-        sys.exit(1)
-
-    with open(args.inp, "r") as users:
-        with open(args.out, "w") as output:
-
-            for user in users:
-                res = build_query(user.rstrip())["data"]
-                if is_inactive_user(res["user"]):
-                    print("OK!\nUser: {}".format(user))
-                    output.write("{}\n".format(user))
-
-
-def run_query(query, variables):
-    request = requests.post(
-        "https://api.github.com/graphql",
-        json={"query": query, "variables": variables},
-        headers=headers,
-    )
-    if request.status_code == 200:
-        return request.json()
-    else:
-        raise requests.HTTPError(
-            "Query failed to run by returning code of {}. {}".format(
-                request.status_code, query
+    def is_inactive(self) -> bool:
+        """determines if the candidate is inactive based on stats"""
+        return (
+            sum(
+                [
+                    self.stars,
+                    self.repos,
+                    self.commits,
+                    self.private_contributions,
+                    self.public_contributions,
+                    self.following,
+                ]
             )
+            == 0
         )
 
 
-def build_query(user):
-    query = """
-    query userInfo($login: String!) {
-            user(login: $login) {
-              name
-              login
-              createdAt
-              starredRepositories {
-                totalCount
-              }
-              repositories {
-                totalCount
-              }
-              following {
-                totalCount
-              }
-              contributionsCollection {
-                totalCommitContributions
-                restrictedContributionsCount
-                hasAnyContributions
-              }
-            }
-        }"""
+class Client:
+    """request client"""
 
-    variables = {"login": user}
-    return run_query(query, variables)
+    def __init__(self, query: str, headers: dict):
+        self.query = query
+        self.headers = headers
+
+    def fetch(self, variables: dict):
+        """requests the github api with query, headers and variables"""
+
+        res = requests.post(
+            "https://api.github.com/graphql",
+            json={"query": self.query, "variables": variables},
+            headers=self.headers,
+        )
+
+        if res.status_code == 200:
+            return (res.json(), True)
+
+        return (f"Query failed with code {res.status_code}", False)
+
+
+def cli():
+    """parse command line arguments"""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input", help="input file")
+    parser.add_argument("-o", "--output", help="output file")
+    return parser.parse_args()
+
+
+def main():
+    """entry point"""
+    args = cli()
+
+    if not args.input or not args.output:
+        print("Must provide valid I/O files.", file=sys.stderr)
+        sys.exit(1)
+
+    users = open(args.input, "r")
+    output = open(args.output, "w+")
+
+    client = Client(
+        """
+        query userInfo($login: String!) {
+                user(login: $login) {
+                  name
+                  login
+                  createdAt
+                  starredRepositories {
+                    totalCount
+                  }
+                  repositories {
+                    totalCount
+                  }
+                  following {
+                    totalCount
+                  }
+                  contributionsCollection {
+                    totalCommitContributions
+                    restrictedContributionsCount
+                    hasAnyContributions
+                  }
+                }
+            }""",
+        {"Authorization": os.getenv("TOKEN")},
+    )
+
+    for user in users:
+        res, status = client.fetch({"login": user.rstrip()})
+
+        if not status:
+            print(res)
+            continue
+
+        if not res["data"]["user"]:
+            continue
+
+        res = res["data"]["user"]
+
+        candidate = Candidate(
+            res["createdAt"][0:4],
+            res["starredRepositories"]["totalCount"],
+            res["repositories"]["totalCount"],
+            res["contributionsCollection"]["totalCommitContributions"],
+            res["contributionsCollection"]["restrictedContributionsCount"],
+            res["following"]["totalCount"],
+            res["contributionsCollection"]["hasAnyContributions"],
+        )
+
+        if not candidate.is_old_account() or not candidate.is_inactive():
+            continue
+
+        print("OK!\nUser: {}".format(user))
+        output.write("{}\n".format(user))
 
 
 if __name__ == "__main__":

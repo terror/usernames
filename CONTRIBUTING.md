@@ -2,13 +2,13 @@
 
 #### Setup:
 
-- Fork the repository and clone your fork.  
+- Fork the repository and clone your fork.
 
-- Install requirements
+- Install requirements (using pipenv)
 
 ```bash
-$ pip install -r requirements.txt
-``` 
+$ pipenv install
+```
 - Generate a GitHub Access Token [here](https://github.com/settings/tokens) and place it in a .env file
   - See issue [#2](https://github.com/terror/usernames/issues/2) if you are having trouble
 ```
@@ -28,4 +28,3 @@ All inactive users are located in the [all.md](https://github.com/terror/usernam
 Account creation date should be no less than 2012 ~ 8 years.
 
 If you have claimed a username from the table you can submit a PR to remove it.
-

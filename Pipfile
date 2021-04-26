@@ -1,0 +1,18 @@
+[[source]]
+name       = "pypi"
+url        = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+requests      = "*"
+python-dotenv = "*"
+
+[dev-packages]
+pylint = "*"
+black = "*"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+lint = "pylint main.py"
