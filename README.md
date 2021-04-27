@@ -31,11 +31,24 @@ Generate a token [here](https://github.com/settings/tokens)
 TOKEN="token token_here"
 ```
 
-### Example:
+### Exporting Results
+
+You can specify an output file to receive the results. The program currently supports Markdown, JSON, CSV or Text file formats.
+
+For instance, running the following command:
 
 ```bash
-$ python3 main.py -i users.txt -o output.txt
+$ python3 main.py -i users.txt -o output.md
 ```
+
+will generate an output similar to this:
+
+| User(s)                                   | Created In |
+| ---                                       | ---        |
+| [overdrive](https://github.com/overdrive) | 2010       |
+| [should](https://github.com/should)       | 2011       |
+| [yo1](https://github.com/yo1)             | 2011       |
+
 
 ## Checks
 - [x] No starred repositories
