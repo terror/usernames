@@ -10,8 +10,8 @@ python-dotenv = "*"
 requests      = "*"
 
 [dev-packages]
-black  = "*"
 pylint = "*"
+yapf = "*"
 
 [requires]
 python_version = "3.8"

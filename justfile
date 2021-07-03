@@ -1,8 +1,22 @@
-fmt:
-  black .
+default:
+  just --list
 
-run:
-  python3 main.py -i input.txt -o output.txt
+ci: fmt lint
 
 lint:
   pylint main.py
+
+fmt:
+  yapf --in-place --recursive *.py
+
+run *args:
+  python3 main.py {{args}}
+
+install *pkg:
+  pipenv install {{pkg}} --skip-lock
+
+lock:
+  pipenv lock --pre
+
+install-editable:
+  pipenv install -e .
