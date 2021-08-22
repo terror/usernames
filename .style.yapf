@@ -1,5 +1,9 @@
 [style]
-INDENT_WIDTH = 2
-COLUMN_LIMIT = 120
-SPACES_BEFORE_COMMENT = 1
 BLANK_LINES_AROUND_TOP_LEVEL_DEFINITION = 1
+COALESCE_BRACKETS                       = True
+COLUMN_LIMIT                            = 120
+CONTINUATION_INDENT_WIDTH               = 2
+DEDENT_CLOSING_BRACKETS                 = True
+INDENT_WIDTH                            = 2
+SPACES_BEFORE_COMMENT                   = 1
+SPLIT_COMPLEX_COMPREHENSION             = True
